@@ -1,0 +1,10 @@
+.content {
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  ul{
+    line-height: 2.5;
+  }
+}
