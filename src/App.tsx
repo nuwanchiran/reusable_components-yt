@@ -5,7 +5,7 @@ function App() {
 
   return (
     <div className="App">
-      <AppList url={'https://jsonplaceholder.typicode.com/posts/'} contentPerPage={10} />
+      <AppList url={'<ADD URL HERE>'} contentPerPage={10} />
     </div>
   )
 }
