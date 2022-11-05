@@ -7,21 +7,24 @@ import {Dispatch, SetStateAction, useEffect} from 'react';
 type Props = {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>
-  theme:'success'|'fail'|'warn'|"info"
+  theme: 'success' | 'fail' | 'warn' | "info"
+  title: string;
+  delay?: number;
 }
 
 const AppAlert = ( props: Props ) => {
-  const {theme} = props
-  useEffect(() => {
-    const timeout = setTimeout(()=>{
-      props.setOpen(false)
-    },2000)
+  const {theme,setOpen,delay,open,title} = props
+
+  useEffect( () => {
+    const timeout = setTimeout( () => {
+      setOpen( false )
+    }, delay || 2000 )
     return () => {
-      clearTimeout(timeout)
+      clearTimeout( timeout )
     }
-  }, [props.open,props.setOpen])
-  
-  return props.open?(
+  }, [open,setOpen] )
+
+  return props.open ? (
     <div className={s[theme]}>
       <div className={s.iconContainer}>
         {theme === "success" && <TiTick className={s.icon} />}
@@ -29,12 +32,12 @@ const AppAlert = ( props: Props ) => {
         {theme === "fail" && <BiError className={s.icon} />}
         {theme === "warn" && <IoWarning className={s.icon} />}
       </div>
-      <p className={s.title}>Successfully added</p>
-      <span className={s.close} onClick={()=>props.setOpen(false)}>
+      <p className={s.title}>{title}</p>
+      <span className={s.close} onClick={() => setOpen( false )}>
         &times;
       </span>
     </div>
-  ):<></>
+  ) : <></>
 }
 
 export default AppAlert
